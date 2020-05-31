@@ -1,54 +1,32 @@
-# Setup your own Stake Pool
+# Heimdall - Setup your own Stake Pool
 
-## (1) Install Ubuntu (I'm using Ubuntu ...)
+Goals of **Heimdall**:
+* Everyone should have the opportunity to operate a stake pool.
+* Maintaining a stake pool should be as easy as possible. Things that can be automated should be automated.
+* Contact point to find the optimal configuration and to collect knowledge
 
+## Create a Stakepool
 
-### Install Rust
+If you already have one and just want to operate it, you can skip this step.
+
+(1) Install Docker
+
+(2) Create Creator Docker Image
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-export PATH="$HOME/.cargo/bin:$PATH"
-rustup install stable
-rustup default stable
+cd creator
+make install
+cd ..
 ```
 
-### Install Docker & docker-compose
+(3) Create Stakepool
 
 ```bash
-sudo apt-get update
-sudo apt-get install docker-compose
-sudo apt-get remove docker docker-engine docker.io
-sudo apt install docker.io
-
-sudo systemctl start docker
-sudo systemctl enable docker
+./create-stakepool.sh
 ```
 
-## (2) Install Daedalus Reward Wallet (https://staking.cardano.org/en/delegation/)
+The stakepool will be stored under `./stakepools/...`
 
-### On Linux
+(4) Upload to the registry
 
-```bash
-chmod a+x name_of_file.bin
-./name_of_file.bin
-```
-
-
-## (4) Install Jormunder
-
-```bash
-git clone --recurse-submodules https://github.com/input-output-hk/jormungandr
-cd jormungandr
-git checkout tags/<latest release tag> # replace this with something like v0.8.18
-git submodule update
-cargo install --locked --path jormungandr # --features systemd # (on linux with systemd)
-cargo install --locked --path jcli
-```
-
-
-## (5) Install Cardano Wallet
-
-```bash
-wget https://raw.githubusercontent.com/input-output-hk/cardano-wallet/master/docker-compose.yml
-NETWORK=testnet docker-compose up #sudo
-``` 
+## Operate a Stakepool
