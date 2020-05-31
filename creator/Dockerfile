@@ -40,7 +40,7 @@ RUN wget https://github.com/input-output-hk/cardano-wallet/releases/download/v20
 RUN tar -xzf cardano-wallet-itn-v2020-05-06-linux64.tar.gz
 RUN cp ./cardano-wallet-jormungandr-linux64/cardano-wallet .
 
-COPY ./create.sh /home/creator/
+COPY ./start.sh /home/creator/
 COPY ./createStakePool.sh /home/creator/
 COPY ./send-certificate.sh /home/creator/
 COPY ./stakepool-config.json /home/creator/
@@ -53,4 +53,4 @@ ENV STAKEPOOL_DESCRIPTION=''
 ENV STAKEPOOL_TICKER=''
 ENV STAKEPOOL_WEBSITE=''
 
-ENTRYPOINT ["/bin/bash", "./create.sh"]
+ENTRYPOINT ["/bin/bash", "./start.sh"]

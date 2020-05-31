@@ -50,10 +50,12 @@ RUN wget https://github.com/input-output-hk/cardano-wallet/releases/download/v20
 RUN tar -xzf cardano-wallet-itn-v2020-05-06-linux64.tar.gz
 RUN cp ./cardano-wallet-jormungandr-linux64/cardano-wallet .
 
-COPY ./config/ /home/node/config/
-COPY ./credentials/ /home/node/credentials/
+COPY ./node_secret.yaml /home/node/
+COPY ./itn_rewards_v1-config.yaml /home/node/
+COPY ./genesis-hash.txt /home/node/
 COPY ./cardano-update-conf.pl /home/node/
 COPY ./start.sh /home/node/
+
 
 EXPOSE 3000
 EXPOSE 3100

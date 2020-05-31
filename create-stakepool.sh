@@ -29,33 +29,44 @@ docker start -a $id
 
 # copy from docker container to host
 cd creator
-mkdir ./output
-docker cp $id:/home/creator/ - > ./output/output.tar.gz
-cd output && tar -xzf ./output.tar.gz && cd ..
+mkdir ./temp
+TEMP=./temp
+docker cp $id:/home/creator/ - > $TEMP/output.tar.gz
+cd $TEMP && tar -xzf ./output.tar.gz && cd ..
 
 # copy files from docker container copy
-cp output/creator/owner.prv output/
-cp output/creator/owner.pub output/
-cp output/creator/owner.addr output/
-cp output/creator/results.txt output/
-cp output/creator/node_secret.yaml output/
-cp output/creator/stake_pool.id output/
-cp output/creator/ticker.txt output/
+cp $TEMP/creator/owner.prv $TEMP/
+cp $TEMP/creator/owner.pub $TEMP/
+cp $TEMP/creator/owner.addr $TEMP/
+cp $TEMP/creator/results.txt $TEMP/
+cp $TEMP/creator/node_secret.yaml $TEMP/
+cp $TEMP/creator/stake_pool.id $TEMP/
+cp $TEMP/creator/ticker.txt $TEMP/
 
-OWNER_ADDR=`cat output/owner.addr`
-OWNER_PUB=`cat output/owner.pub`
-POOL_ID=`cat output/stake_pool.id`
+OWNER_ADDR=`cat $TEMP/owner.addr`
+OWNER_PUB=`cat $TEMP/owner.pub`
+STAKEPOOL_TICKER=`cat $TEMP/ticker.txt`
+STAKEPOOL_DIR="stakepool-$STAKEPOOL_TICKER"
 
 # create registry dictionary
-cp output/creator/$OWNER_PUB.json output/registry/$OWNER_PUB/
-cp output/creator/$OWNER_PUB.sig output/registry/$OWNER_PUB/
+mkdir $TEMP/registry/
+mkdir $TEMP/registry/$OWNER_PUB/
+cp $TEMP/creator/$OWNER_PUB.json $TEMP/registry/$OWNER_PUB/
+cp $TEMP/creator/$OWNER_PUB.sig $TEMP/registry/$OWNER_PUB/
 
 # copy to final dictionary and remove tmp files
-rm -rf output/creator
-rm output/output.tar.gz
-mkdir ../stakepools/$POOL_ID
-cp -r output/. ../stakepools/$POOL_ID/
-rm -rf output/
+rm -rf $TEMP/creator
+rm $TEMP/output.tar.gz
+mkdir ../stakepools/$STAKEPOOL_DIR
+cp -r $TEMP/. ../stakepools/$STAKEPOOL_DIR/
+rm -rf $TEMP/
+cd ..
 
 # stop docker
 docker rm -v $id
+
+# create stakepool operator
+cp -r creator/operator/. stakepools/$STAKEPOOL_DIR/
+mkdir stakepools/$STAKEPOOL_DIR/operator/
+cp -r operator/. stakepools/$STAKEPOOL_DIR/operator/
+cp stakepools/$STAKEPOOL_DIR/node_secret.yaml stakepools/$STAKEPOOL_DIR/operator/

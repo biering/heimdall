@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  stakepool:
+    image: "<YOUR_DOCKER_IMAGE>:latest"
+    ports:
+      - "3000:3100"

@@ -19,8 +19,7 @@ OWNER_PUB=`cat $STAKEPOOL_DIR/owner.pub`
 git clone https://github.com/cardano-foundation/incentivized-testnet-stakepool-registry.git
 cd incentivized-testnet-stakepool-registry/registry && git checkout -b $STAKEPOOL_TICKER
 mkdir $OWNER_PUB/
-cp ../../$STAKEPOOL_DIR/$OWNER_PUB.json ./
-cp ../../$STAKEPOOL_DIR/$OWNER_PUB.sig ./
+cp ../../$STAKEPOOL_DIR/registry/. ./
 #cp ../../OWNER_PUBKEY.* ./
 #git add *
 #git commit -m "$STAKEPOOL_TICKER"
