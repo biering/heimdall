@@ -1,0 +1,8 @@
+{
+    "owner": "OWNER_PUBKEY",
+    "name": "Pudim o gatinho com fome",
+    "description": "All your stake are belong with PUDIM!",
+    "ticker": "PUDIM",
+    "homepage": "https://pudim.od.gy",
+    "pledge_address": "OWNER_ADDR"
+}
