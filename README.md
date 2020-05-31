@@ -1,4 +1,6 @@
-# Heimdall - Setup your own Stake Pool
+![Heimdall Logo](assets/heimdall-logo-title.png "Heimdall Logo")
+
+# Heimdall - Setup your own Cardano Stake Pool
 
 Goals of **Heimdall**:
 * Everyone should have the opportunity to operate a stake pool.
@@ -12,7 +14,7 @@ If you already have one and just want to operate it, you can skip this step.
 
 1. Install Docker [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 2. Create creator docker image `./make-creator.sh`. You only need to run this script when you change something at the creator (e.g. updating the repository).
-3. Create stake pool with `./create-stakepool.sh`. The script will guide you through the process to define the stake pool configuration. The created stake pool will be stored under `stakepools/stakepool-<TICKER>`
+3. Create stake pool with `./create-stakepool.sh`. The script will guide you through the process to define the stake pool configuration. The created stake pool will be stored under `stakepools/stakepool-<TICKER>`.
 4. Upload to the [incentivized-testnet-stakepool](https://github.com/cardano-foundation/incentivized-testnet-stakepool-registry/) registry. There you need to add the created dictionary under `stakepools/stakepool-<TICKER>/registry/` and create a pull request.
 
 |File              |Description                                                                                                                                                                     |
@@ -35,5 +37,9 @@ After you created a stakepool you can also operate it with Heimdall.
 4. Start the stakepool with `docker-compose up`
 
 Now the stakepool is running. You can check the status with `./jcli rest v0 node stats get --host "http://127.0.0.1:3100/api"`.
+
+## Useful Links
+
+- [How Cardano pool operator fees work](https://forum.cardano.org/t/how-cardano-pool-operator-fees-work/29348)
 
 This project was heavily inspired by [organicdesign.com](https://www.organicdesign.com.br/Set_up_a_Cardano_staking_pool).
