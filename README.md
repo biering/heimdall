@@ -1,6 +1,6 @@
 ![Heimdall Logo](assets/heimdall-logo-title.png "Heimdall Logo")
 
-# Heimdall - Setup your own Cardano Stake Pool
+# Setup your own Cardano Stake Pool
 
 Goals of **Heimdall**:
 * Everyone should have the opportunity to operate a stake pool.
@@ -18,7 +18,7 @@ If you already have one and just want to operate it, you can skip this step.
 4. Upload to the [incentivized-testnet-stakepool](https://github.com/cardano-foundation/incentivized-testnet-stakepool-registry/) registry. There you need to add the created dictionary under `stakepools/stakepool-<TICKER>/registry/` and create a pull request.
 
 |File              |Description                                                                                                                                                                     |
-|:----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|:-----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |`operator/`       |Blueprint to create and use the operator docker image.                                                                                                                          |
 |`registry/`       |If you create a stakepool you need to register the contents at [incentivized-testnet-stakepool](https://github.com/cardano-foundation/incentivized-testnet-stakepool-registry/).|
 |`node_secret.yaml`|Needed to run the stake pool.                                                                                                                                                   |
